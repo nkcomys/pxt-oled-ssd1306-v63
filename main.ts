@@ -441,7 +441,7 @@ namespace OLED {
                 screenBuf[ind] = screenPixel
             }
         }
-        drawBuff()
+        //drawBuff()
 
     }
 
