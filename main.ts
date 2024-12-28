@@ -424,8 +424,8 @@ namespace OLED {
     //% group="Draw"
     export function drawImageOnXY(im:Image, x: number, y: number) {
 
-        for (let dx = 0; dx < im.width() - 1; dx++) {
-            for (let dy = 0; dy < im.height() - 1; dy++) {
+        for (let dx = 0; dx < im.width(); dx++) {
+            for (let dy = 0; dy < im.height(); dy++) {
                 let fx = x+dx;
                 let fy = y+dy;
 
