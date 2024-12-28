@@ -425,7 +425,7 @@ namespace OLED {
     export function drawImageOnsetXY(im:Image, x: number, line: number) {
         charX = x;
         charY = line;
-        
+
         for (let dx = 0; dx < 16; dx++) {
             for (let dy = 0; dy < 16; dy++) {
                 let x = charX+dx;
@@ -442,7 +442,7 @@ namespace OLED {
                 }
             }
         }
-        drawBuff(charX,charX+15,charY,charY+1)
+        drawBuff()
 
     }
 
