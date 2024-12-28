@@ -435,9 +435,9 @@ namespace OLED {
                 let ind = x + page * 128 + 1
                 let shift_page = y % 8
                 let screenPixel = screenBuf[ind]
-                if (im.pixel(dx, dy) ? 1 : 0) {
-                    screenPixel = screenPixel | (1 << shift_page)
-                }else{
+
+                screenPixel = screenPixel | (1 << shift_page)
+                if ((im.pixel(dx, dy) ? 1 : 0)==0) {
                     screenPixel = (screenPixel ^ (1 << shift_page))
                 }
                     
