@@ -200,15 +200,6 @@ namespace OLED {
                 charX += 12
         }
     }
-    //% block="setXY $x at $line"
-    //% x.min=0 x.max=127
-    //% line.min=0 line.max=7
-    //% weight=6
-    //% group="Text"
-    export function setXY(x: number, line: number) {
-        charX = x;
-        charY = line;
-    }
     //% block="show number $n at $line"
     //% line.min=0 line.max=7
     //% weight=5
@@ -426,14 +417,15 @@ namespace OLED {
 
     }
 
-    //% block="draw16x16"
-    //% imageLiteral=1
-    //% imageLiteralColumns=16
-    //% imageLiteralRows=16
-    //% shim=images::createImage
-    export function draw16x16(i: String): void {
-        const im = <Image><any>i;
-
+    //% block="draw %im on X $x at $line"
+    //% x.min=0 x.max=127
+    //% line.min=0 line.max=7
+    //% weight=6
+    //% group="Draw"
+    export function drawImageOnsetXY(im:Image, x: number, line: number) {
+        charX = x;
+        charY = line;
+        
         for (let dx = 0; dx < 16; dx++) {
             for (let dy = 0; dy < 16; dy++) {
                 let x = charX+dx;
@@ -451,6 +443,20 @@ namespace OLED {
             }
         }
         drawBuff(charX,charX+15,charY,charY+1)
+
+    }
+
+    //% block="draw16x16"
+    //% weight=6
+    //% imageLiteral=1
+    //% imageLiteralColumns=16
+    //% imageLiteralRows=16
+    //% shim=images::createImage
+    //% group="Draw"
+    export function draw16x16(i: String): Image {
+        const im = <Image><any>i;
+        return im;
+       
     }
 
     /**
