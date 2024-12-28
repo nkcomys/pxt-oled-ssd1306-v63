@@ -417,12 +417,12 @@ namespace OLED {
 
     }
 
-    //% block="draw %im on X $x at $line"
+    //% block="draw %im on X $x Y $y"
     //% x.min=0 x.max=127
-    //% line.min=0 line.max=63
+    //% y.min=0 y.max=63
     //% weight=6
     //% group="Draw"
-    export function drawImageOnsetXY(im:Image, x: number, y: number) {
+    export function drawImageOnXY(im:Image, x: number, y: number) {
 
         for (let dx = 0; dx < im.width() - 1; dx++) {
             for (let dy = 0; dy < im.height() - 1; dy++) {
