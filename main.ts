@@ -440,10 +440,7 @@ namespace OLED {
                 if ((im.pixel(dx, dy) ? 1 : 0)==0) {
                     screenPixel = (screenPixel ^ (1 << shift_page))
                 }
-                    
-            
                 screenBuf[ind] = screenPixel
-                }
             }
         }
         drawBuff()
