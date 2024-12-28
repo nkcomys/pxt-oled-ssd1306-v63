@@ -419,21 +419,19 @@ namespace OLED {
 
     //% block="draw %im on X $x at $line"
     //% x.min=0 x.max=127
-    //% line.min=0 line.max=7
+    //% line.min=0 line.max=63
     //% weight=6
     //% group="Draw"
-    export function drawImageOnsetXY(im:Image, x: number, line: number) {
-        charX = x;
-        charY = line;
+    export function drawImageOnsetXY(im:Image, x: number, y: number) {
 
-        for (let dx = 0; dx < 16; dx++) {
-            for (let dy = 0; dy < 16; dy++) {
-                let x = charX+dx;
-                let y = charY*8+dy;
+        for (let dx = 0; dx < im.width() - 1; dx++) {
+            for (let dy = 0; dy < im.height() - 1; dy++) {
+                let fx = x+dx;
+                let fy = y+dy;
 
-                let page = y >> 3
-                let ind = x + page * 128 + 1
-                let shift_page = y % 8
+                let page = fy >> 3
+                let ind = fx + page * 128 + 1
+                let shift_page = fy % 8
                 let screenPixel = screenBuf[ind]
 
                 screenPixel = screenPixel | (1 << shift_page)
@@ -457,7 +455,18 @@ namespace OLED {
     export function draw16x16(i: String): Image {
         const im = <Image><any>i;
         return im;
-       
+    }
+
+    //% block="draw8x8"
+    //% weight=6
+    //% imageLiteral=1
+    //% imageLiteralColumns=8
+    //% imageLiteralRows=8
+    //% shim=images::createImage
+    //% group="Draw"
+    export function draw8x8(i: String): Image {
+        const im = <Image><any>i;
+        return im;
     }
 
     /**
