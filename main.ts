@@ -66,6 +66,8 @@ namespace OLED {
 
     let fontZoom: number = 1;
 
+    let drawBuffer = false
+
     let screenBuf = pins.createBuffer(1025);
 
     function command(cmd: number) {
@@ -82,6 +84,14 @@ namespace OLED {
     //% group="Text"
     export function setFontZomm(zoom: number) {
         fontZoom = zoom
+    }
+
+    //% block="set draw to buffer $yesno"
+    //% yesno.defl=false
+    //% weight=2
+    //% group="Draw"
+    export function setDrawBuffer(yesno: boolean) {
+        drawBuffer = yesno
     }
 
     //% block="draw Buffer $x1 $x2 $page1 $page2"
@@ -383,8 +393,11 @@ namespace OLED {
             screenBuf[ind] = screenPixel
         }
 
-        if(drawNow)
-            drawBuff()
+        if(drawNow){
+            if(!drawBuffer)
+                drawBuff()
+        }
+            
 
     }
 
@@ -449,7 +462,8 @@ namespace OLED {
         }
         let y2 = (y+im.height()-1);
 
-        drawBuff(x,x+im.width()-1,y >> 3,y2 >> 3)
+        if(!drawBuffer)
+            drawBuff(x,x+im.width()-1,y >> 3,y2 >> 3)
     }
 
     //% block="draw16x16"
@@ -612,8 +626,10 @@ namespace OLED {
            
         }
 
-        if(drawNow)
-            drawBuff(x,x+width-1,y >> 3, (y+height-1) >> 3)
+        if(drawNow){
+            if(!drawBuffer)
+                drawBuff(x,x+width-1,y >> 3, (y+height-1) >> 3)
+        }
         
     }
 
@@ -650,7 +666,8 @@ namespace OLED {
             drawShape(pixels, clear, false)
         }
         
-        drawBuff()
+        if(!drawBuffer)
+            drawBuff()
     }
     
     //% block="initialize OLED with width $width height $height address $address"
@@ -658,6 +675,7 @@ namespace OLED {
     //% height.defl=64
     //% address.defl=60
     //% weight=9
+    //% group="Init"
     export function init(width: number, height: number, address:number=60) {
         chipAdress = address
         command(SSD1306_DISPLAYOFF);
