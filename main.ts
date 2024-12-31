@@ -447,8 +447,9 @@ namespace OLED {
                 screenBuf[ind] = screenPixel
             }
         }
-        //drawBuff()
+        let y2 = (y+im.height()-1);
 
+        drawBuff(x,x+im.width()-1,y >> 3,y2 >> 3)
     }
 
     //% block="draw16x16"
