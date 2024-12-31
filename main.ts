@@ -84,7 +84,15 @@ namespace OLED {
         fontZoom = zoom
     }
 
-    //% block="draw Buffer"
+    //% block="draw Buffer $x1 $x2 $page1 $page2"
+    //% x1.min=0 x1.max=127
+    //% x2.min=0 x2.max=127
+    //% page1.min=0 page1.max=7
+    //% page2.min=0 page2.max=7
+    //% x1.defl=0
+    //% x2.defl=127
+    //% page1.defl=0
+    //% page2.defl=7
     //% weight=80
     //% group="Draw"
     export function drawBuff(x1: number=0, x2: number=127, page1: number=0, page2: number=7) {
